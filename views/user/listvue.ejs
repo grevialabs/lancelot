@@ -1,0 +1,104 @@
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+
+<div id="app">
+    {{ message }}
+</div>
+
+<div id="app-7">
+    <ol>
+      <!--
+        Now we provide each todo-item with the todo object
+        it's representing, so that its content can be dynamic.
+        We also need to provide each component with a "key",
+        which will be explained later.
+      -->
+      <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+      </todo-item>
+    </ol>
+  </div>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+
+var listItems = [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ];
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: listItems
+  }
+})
+</script>
+
+<table width='80%' border=0>
+
+	<tr style='text-align:left; background-color:#CCC'>
+		<th>Name</th>
+		<th>Age</th>
+		<th>Email</th>
+		<th>Action</th>
+	</tr>
+	
+	<!--
+		Using FOREACH LOOP for the users array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<% if (data) { %>
+	<% data.forEach(function(user){ %>
+		<tr>
+			<td><%= user.name %></td>
+			<td><%= user.age %></td>
+			<td><%= user.email %></td>
+			<td>
+				<div style="float:left">
+					<a href='/users/edit/<%= user.id %>'>Edit</a> &nbsp;							
+					<form method="post" action="/users/delete/<%= user.id %>" style="float:right">
+						<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
