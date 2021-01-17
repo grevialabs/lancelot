@@ -1,7 +1,12 @@
+var tailwind = require('tailwindcss')
+
 var express = require('express')
 var app = express()
 
 var mysql = require('mysql')
+
+var routes = require('./routes/routes')
+
 
 /**
  * This middleware provides a consistent API 
@@ -33,15 +38,6 @@ app.use(myConnection(mysql, dbOptions, 'pool'))
  */ 
 app.set('view engine', 'ejs')
 
-/**
- * import routes/index.js
- * import routes/users.js
- */ 
-var index = require('./routes/index')
-var users = require('./routes/users')
-var api = require('./routes/api')
-// var api_product_get = require('./routes/api/product_get')
-var api_product_list_get = require('./routes/api/product_list_get')
 
 
 /**
@@ -49,6 +45,8 @@ var api_product_list_get = require('./routes/api/product_list_get')
  */ 
 var expressValidator = require('express-validator')
 app.use(expressValidator())
+
+app.use(routes)
 
 
 /**
@@ -117,18 +115,7 @@ app.use(session({
 }))
 app.use(flash())
 
-
-app.use('/', index)
-app.use('/users', users)
-
-// ---------------------------
-// Prefix api/
-route_prefix = '/api'
-app.use(route_prefix, api)	
-app.use(route_prefix, api_product_list_get)
-// app.use('/api', api_product_get)
-// ---------------------------
-
+app.use(express.static((__dirname, 'public')));
 
 app.listen(config.server.port, function(){
 	console.log('Server running at port ' + config.server.port + ': http://' + config.server.host + ':' + config.server.port)

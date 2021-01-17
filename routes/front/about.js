@@ -1,14 +1,9 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function(req, res) {
+app.get('/about', function(req, res) {
 	// render to views/index.ejs template file
-	res.render('index', {title: 'My Node.js Application a'})
-})
-
-app.get('/tailwind', function(req, res) {
-	// render to views/index.ejs template file
-	res.render('front/tailwind', {title: 'Controller index from tailwind'})
+	res.render('index', {title: 'this is from front about'})
 })
 
 /** 

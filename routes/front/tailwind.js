@@ -3,12 +3,7 @@ var app = express()
 
 app.get('/', function(req, res) {
 	// render to views/index.ejs template file
-	res.render('index', {title: 'My Node.js Application a'})
-})
-
-app.get('/tailwind', function(req, res) {
-	// render to views/index.ejs template file
-	res.render('front/tailwind', {title: 'Controller index from tailwind'})
+	res.render('front/tailwind', {title: 'My Node.js Application a'})
 })
 
 /** 
