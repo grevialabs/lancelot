@@ -117,6 +117,32 @@ app.use(flash())
 
 app.use(express.static((__dirname, 'public')));
 
+// -----------------
+// for debug
+const winston = require('winston');
+ 
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.json(),
+  defaultMeta: { service: 'user-service' },
+  transports: [
+    //
+    // - Write all logs with level `error` and below to `error.log`
+    // - Write all logs with level `info` and below to `combined.log`
+    //
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' }),
+  ],
+});
+
+if (process.env.NODE_ENV !== 'production') {
+	logger.add(new winston.transports.Console({
+	  format: winston.format.simple(),
+	}));
+  }
+  // ----------------------
+//   ayam
+
 app.listen(config.server.port, function(){
 	console.log('Server running at port ' + config.server.port + ': http://' + config.server.host + ':' + config.server.port)
 })
