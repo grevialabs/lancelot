@@ -7,6 +7,10 @@ var mysql = require('mysql')
 
 var routes = require('./routes/routes')
 
+var myDate = require('./modules/getdate')
+// var bootstrap = require('bootstrap')
+// var jquery = require('jquery')
+
 
 /**
  * This middleware provides a consistent API 
@@ -115,8 +119,12 @@ app.use(session({
 }))
 app.use(flash())
 
-app.use(express.static((__dirname, 'public')));
 
+// app.use('/js', express.static(__dirname + 'node_modules/bootstrap/dist/js')); // redirect bootstrap JS
+// app.use('/js', express.static(__dirname + 'node_modules/jquery/dist')); // redirect JS jQuery
+// app.use('/css', express.static(__dirname + 'node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+
+// app.use(express.static((__dirname, 'public')));
 // -----------------
 // for debug
 const winston = require('winston');

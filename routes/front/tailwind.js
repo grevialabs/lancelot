@@ -1,9 +1,14 @@
 var express = require('express')
 var app = express()
+var getDate = require('../../modules/getdate')
+// const { ConsoleTransportOptions } = require('winston/lib/winston/transports')
 
 app.get('/', function(req, res) {
 	// render to views/index.ejs template file
-	res.render('front/tailwind', {title: 'My Node.js Application a'})
+	console.log('ayamaa')
+	console.log(getDate.getdate())
+	// res.response()
+	// res.render('front/tailwind', {title: 'My Node.js Application a'})
 })
 
 /** 
