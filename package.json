@@ -32,7 +32,7 @@
     "method-override": "^2.3.10",
     "mysql": "^2.16.0",
     "popper.js": "^1.16.1",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.10",
     "tailwindcss": "^2.0.2",
     "winston": "^3.3.3"
   }
