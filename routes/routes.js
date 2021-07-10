@@ -12,6 +12,7 @@ var routes = express()
 var index = require('./index')
 var users = require('./users')
 var api = require('./api')
+var login = require('./login')
 // var api_product_get = require('./api/product_get')
 var api_product_list_get = require('./api/product_list_get')
 var tailwind = require('./front/tailwind')
@@ -20,8 +21,8 @@ const { route } = require('./index')
 
 routes.use('/', index)
 routes.use('/users', users)
-routes.use('/users', users)
 routes.use('/tailwind', tailwind)
+routes.use('/login', login)
 
 // ---------------------------
 // Prefix api/
