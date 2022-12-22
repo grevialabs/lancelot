@@ -28,7 +28,7 @@
     "express-validator": "^3.2.0",
     "flash": "^1.1.0",
     "jquery": "^1.12.4",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.16.0",
     "popper.js": "^1.16.1",
